@@ -12,10 +12,18 @@ function makeGrid(rows, columns) {
     };
 };
 
-
-makeGrid(16,16);
-
-document.querySelectorAll('.column').forEach(pixel => pixel.addEventListener('mouseover', (e) => {
-    e.target.style.background = 'blue';
-}));
+function etchSketch() {
+    document.querySelectorAll('.column').forEach(pixel => pixel.addEventListener('mouseover', (e) => {
+        e.target.style.background = 'blue';
+    }));
+};
+document.querySelector('.btn').addEventListener('click', () => {
+    let newSize = window.prompt('How large do you want the next grid to be? ');
+    if (newSize > 100) {
+        newSize = window.prompt("That's too large, keep it under 100. How large do you want the next grid to be? ");
+    }
+    document.querySelector('.grid-container').innerHTML = "";
+    makeGrid(newSize,newSize);
+    etchSketch();
+});
 
